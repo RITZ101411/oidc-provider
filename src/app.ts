@@ -1,5 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { swaggerUI } from '@hono/swagger-ui';
+import { discovery } from './routes/discovery.js';
 
 const app = new OpenAPIHono();
 
@@ -11,6 +12,8 @@ app.doc('/doc', {
     description: 'This is OpenID Connect Provider',
   },
 });
+
+app.route('/', discovery);
 
 app.get('/ui', swaggerUI({ url: './doc' }));
 
