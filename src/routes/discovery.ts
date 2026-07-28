@@ -2,11 +2,11 @@ import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
 import { env } from '../config.js';
 
 const DiscoveryResponseSchema = z.object({
-  issuer: z.string().url(),
-  authorization_endpoint: z.string().url(),
-  token_endpoint: z.string().url(),
-  userinfo_endpoint: z.string().url(),
-  jwks_uri: z.string().url(),
+  issuer: z.url(),
+  authorization_endpoint: z.url(),
+  token_endpoint: z.url(),
+  userinfo_endpoint: z.url(),
+  jwks_uri: z.url(),
   response_types_supported: z.array(z.string()),
   subject_types_supported: z.array(z.string()),
   id_token_signing_alg_values_supported: z.array(z.string()),
