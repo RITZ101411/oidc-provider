@@ -2,7 +2,7 @@ import { z } from '@hono/zod-openapi';
 
 const envSchema = z.object({
   PORT: z.string().optional().default('3000'),
-  ISSUER_URL: z.string().url().optional().default('http://localhost:3000'),
+  ISSUER_URL: z.string().url(),
   DATABASE_URL: z.string(),
 });
 
