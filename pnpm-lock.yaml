@@ -23,6 +23,9 @@ importers:
       hono:
         specifier: ^4.12.32
         version: 4.12.32
+      jose:
+        specifier: ^6.2.4
+        version: 6.2.4
       pg:
         specifier: ^8.22.0
         version: 8.22.0
@@ -788,6 +791,9 @@ packages:
     resolution: {integrity: sha512-XcuyW9qE2kJn07PkecMOBd5Vq/hMy7mmGw+idz1yblbg9N17ijJODrvPkn7/dwL3Kulj8LcRJ69DLOWf91dRUg==}
     engines: {node: '>=16.9.0'}
 
+  jose@6.2.4:
+    resolution: {integrity: sha512-N8acGzVsQy6M/fjFcxtysNc4Q379TcM5dM/qKkNtsHFji88yANnXTr7BLeP75iPnFwBfQzM/jg2BZ9+HZrHCZA==}
+
   openapi3-ts@4.6.0:
     resolution: {integrity: sha512-a4sfn6L2sIShhtzJqmjGrARvxAW/3F2BJDdyRVvNF9VhAsZSh5hSyI3a9TNvmzBxXmq66nY5LNT5bQcBxYAZZg==}
 
@@ -1319,6 +1325,8 @@ snapshots:
       resolve-pkg-maps: 1.0.0
 
   hono@4.12.32: {}
+
+  jose@6.2.4: {}
 
   openapi3-ts@4.6.0:
     dependencies:
