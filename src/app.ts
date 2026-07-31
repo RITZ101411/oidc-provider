@@ -2,6 +2,7 @@ import { OpenAPIHono } from '@hono/zod-openapi';
 import { swaggerUI } from '@hono/swagger-ui';
 import { discovery } from './routes/discovery.js';
 import { jwksRoute } from './routes/jwks.js';
+import { authorizeRoute } from './routes/authorize.js';
 
 const app = new OpenAPIHono();
 
@@ -16,6 +17,7 @@ app.doc('/doc', {
 
 app.route('/', discovery);
 app.route('/', jwksRoute);
+app.route('/', authorizeRoute);
 
 app.get('/ui', swaggerUI({ url: './doc' }));
 
