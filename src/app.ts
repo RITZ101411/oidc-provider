@@ -1,24 +1,14 @@
-import { OpenAPIHono } from '@hono/zod-openapi';
-import { swaggerUI } from '@hono/swagger-ui';
-import { discovery } from './routes/discovery.js';
-import { jwksRoute } from './routes/jwks.js';
-import { authorizeRoute } from './routes/authorize.js';
+import { Hono } from 'hono';
+import { cors } from 'hono/cors';
+import { auth } from './auth.js';
 
-const app = new OpenAPIHono();
+const app = new Hono();
 
-app.doc('/doc', {
-  openapi: '3.0.0',
-  info: {
-    title: 'oidc-provider',
-    version: '1.0.0',
-    description: 'This is OpenID Connect Provider',
-  },
-});
+app.use('/api/auth/*', cors({
+  origin: 'http://localhost:5173',
+  credentials: true,
+}));
 
-app.route('/', discovery);
-app.route('/', jwksRoute);
-app.route('/', authorizeRoute);
-
-app.get('/ui', swaggerUI({ url: './doc' }));
+app.all('/api/auth/*', (c) => auth.handler(c.req.raw));
 
 export default app;

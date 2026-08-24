@@ -1,14 +1,9 @@
 import { serve } from '@hono/node-server';
-import { env } from './config.js';
 import app from './app.js';
-import { ensureActiveKey } from './application/jwk.js';
 
-const port = Number(env.PORT);
-
-await ensureActiveKey();
+const port = Number(process.env.PORT || 3000);
 
 serve({ fetch: app.fetch, port }, (info) => {
-  console.log(`Server running on http://localhost:${info.port}`);
+  console.log(`OIDC Provider running on http://localhost:${info.port}`);
+  console.log(`Discovery: http://localhost:${info.port}/api/auth/.well-known/openid-configuration`);
 });
-
-export default app;
