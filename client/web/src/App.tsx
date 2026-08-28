@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const API = 'http://localhost:8080';
+
 type User = { sub: string; email?: string; name?: string };
 
 export default function App() {
@@ -7,7 +9,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/me', { credentials: 'include' })
+    fetch(`${API}/me`, { credentials: 'include' })
       .then((r) => r.json())
       .then((data) => {
         setUser(data.user);
@@ -16,7 +18,7 @@ export default function App() {
   }, []);
 
   const handleLogout = async () => {
-    await fetch('/logout', { method: 'POST', credentials: 'include' });
+    await fetch(`${API}/logout`, { method: 'POST', credentials: 'include' });
     setUser(null);
   };
 
@@ -27,7 +29,7 @@ export default function App() {
       <div style={{ maxWidth: 400, margin: '80px auto', fontFamily: 'system-ui', textAlign: 'center' }}>
         <h1>Client App</h1>
         <p>OIDC Provider でログインしてください</p>
-        <a href="/login">
+        <a href={`${API}/login`}>
           <button style={{ padding: '12px 24px', fontSize: 16, cursor: 'pointer' }}>
             ログイン
           </button>
