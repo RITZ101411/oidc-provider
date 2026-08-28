@@ -2,7 +2,7 @@ FROM node:22-slim AS build
 RUN corepack enable pnpm
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm install
+RUN pnpm install --ignore-scripts
 COPY . .
 RUN pnpm build
 
